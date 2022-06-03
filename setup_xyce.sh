@@ -1,7 +1,10 @@
 ######### build Xyce directly #############
 # installation confirmed only at ubuntu 20.04
+read -n 1 -p "get Xyce-7.4 source from sandia.gov -> download it -> press enter"
+read -p "Input base folder path where xyce located in: " xycesource
 
-apt update && apt upgrade -y
+
+sudo apt update && sudo apt upgrade -y
 ### install prerequisites
 sudo apt-get install -y \
 g++ \
@@ -25,11 +28,11 @@ wget https://github.com/trilinos/Trilinos/archive/refs/tags/trilinos-release-12-
 tar -xzf trilinos-release-12-12-1.tar.gz
 mkdir trilinos-build && cd trilinos-build
 
+SRCDIR=$HOME/Trilinos12.12/Trilinos-trilinos-release-12-12-1
+ARCHDIR=$xycesource/XyceLibs/Parallel
+FLAGS="-O3 -fPIC"
 cat > reconfigure <<- EOM
 #!/bin/sh
-SRCDIR=$HOME/Trilinos12.12/Trilinos-trilinos-release-12-12-1
-ARCHDIR=$HOME/XyceLibs/Parallel
-FLAGS="-O3 -fPIC"
 cmake \
 -G "Unix Makefiles" \
 -DCMAKE_C_COMPILER=mpicc \
@@ -79,9 +82,6 @@ make -j8
 sudo make install -j8
 
 ###build Xyce
-cd $HOME
-read -n 1 -p "get Xyce-7.4 source from sandia.gov -> download it -> press enter"
-read -p "Input base folder path where xyce located in" xycesource
 cd $xycesource
 tar -xzf Xyce-7.4.tar.gz
 
