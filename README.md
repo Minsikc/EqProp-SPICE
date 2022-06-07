@@ -8,5 +8,10 @@ setup_xyce.sh
 ```
 2. install all requirements
 ```shell
-pip -r requirmenets.txt
+pip -r requirements.txt
 ```
+3. download diode libaries from pyspice & unzip to ./ex subdirectory
+```shell
+pyspice-post-installation --download-example
+```
+4. change
