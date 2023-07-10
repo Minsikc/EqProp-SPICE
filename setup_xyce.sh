@@ -104,4 +104,4 @@ sudo make install -j8
 
 # add to $PATH
 Xycepath=$xycesource/Xyceinstall/Parallel/bin
-export PATH=$PATH:$Xycepath >> ~/.profile
+export PATH=$PATH:$Xycepath >> ~/.bashrc #./profile --> ./bashrc 
